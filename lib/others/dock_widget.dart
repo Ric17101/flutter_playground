@@ -23,12 +23,15 @@ class _DockState<T> extends State<Dock<T>> {
   /// [T] items being manipulated.
   late final List<T> items = widget.items.toList();
 
+  /// Initialization of the list [items]
   @override
   void initState() {
+    /// Sorts the [items] based on its index
     items.sort((a, b) {
       debugPrint('${a.toString()}: $a');
       debugPrint('${b.toString()}: $b');
 
+      /// Returns 1 when index a is greater than b, 0 otherwise
       return (items.indexOf(a) > items.indexOf(b)) ? 1 : 0;
     });
     super.initState();
@@ -51,6 +54,7 @@ class _DockState<T> extends State<Dock<T>> {
         padding: const EdgeInsets.symmetric(horizontal: 40),
         scrollDirection: Axis.horizontal,
         proxyDecorator: (child, index, animation) {
+          /// Animates the dragging item on the list by scaling transition
           return ScaleTransition(
             scale: animation.drive(
               Tween<double>(begin: 1, end: 1.4).chain(
@@ -65,6 +69,7 @@ class _DockState<T> extends State<Dock<T>> {
             debugPrint('newIndex: $newIndex');
             debugPrint('oldIndex: $oldIndex');
 
+            /// Switches the [items] onReorder gesture of the items on their new order
             if (newIndex > oldIndex) {
               T item = items[oldIndex];
               items.removeAt(oldIndex);

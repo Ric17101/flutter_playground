@@ -5,9 +5,11 @@ Future<void> main() async {
   runApp(const MainApp());
 }
 
+/// Main Application
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
+  /// Builder for the main app
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
